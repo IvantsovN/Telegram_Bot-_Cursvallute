@@ -2,7 +2,7 @@ const TelegramBot = require('node-telegram-bot-api');
 const request = require('request');
 // replace the value below with the Telegram token you receive from @BotFather
 const token = '754577819:AAFV0n7RttFEuaeobtQLlrheqhJeF2aCf1c';
-const admin_id ="324115289";
+const admin_id ="580405950"; //my id 324115289
 // Create a bot that uses 'polling' to fetch new updates
 const bot = new TelegramBot(token, {polling: true});
 
@@ -131,9 +131,10 @@ bot.onText(/\/exchange_currency/, (msg, match) => {
 
 });
 
-bot.onText(/ [0-9a-z_] /, (msg, match) => {
-  const chatId = msg.chat.id;
-  bot.sendMessage(chatId, "Я вас не понимаю");
+bot.onText(/\/help/, (msg, match) => {
+    const chatId = msg.chat.id;
+    let md = "Команды для работы с ботом \n /curse - Показывает актуальные курсы валют по ЦБ \n /calc сумма в ₽ - Калькулятор валют \n /rate_bot - Оценить работу бота \n /exchange_currency - Заявка на обмен валюты у нас";
+    bot.sendMessage(chatId, md);
 
 });
 
@@ -141,7 +142,7 @@ bot.onText(/\/start/, (msg, match) => {
   const chatId = msg.chat.id;
 console.log( msg.from);
   const name = msg.from.first_name;
-  let md = `Привет, ${name}! Меня создал Тамирлан Омаров, чтобы ты в любой момент мог узнать курс ЦБ и перевести родные деревянные в зеленый нал👇👇👇👇👇👇👇👇👇👇👇👇👇👇`;
+  let md = `Привет, ${name}! Меня создал Тамирлан Омаров, чтобы ты в любой момент мог узнать курс ЦБ и перевести родные деревянные в зеленый нал👇👇👇👇👇👇👇👇👇👇👇👇👇👇\n Для получения списка команд для работы с ботом напишите /help`;
   bot.sendMessage(chatId, md);
   bot.sendDocument(chatId,'https://media.giphy.com/media/edXbRv1oCC14k/giphy.gif');
 
